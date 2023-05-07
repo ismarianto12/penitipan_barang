@@ -25,7 +25,7 @@ class _ForgotState extends State<Forgot> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 53, 128, 190),
+        backgroundColor: Colors.brown,
         title: Text("Forget Password"),
       ),
       body: SafeArea(

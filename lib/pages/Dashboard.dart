@@ -61,6 +61,9 @@ class _DashboardState extends State<Dashboard> {
                 children: [
                   Column(
                     children: [
+                      SizedBox(
+                        height: 10,
+                      ),
                       Text("Hy Rian",
                           style: TextStyle(
                               color: Colors.white,

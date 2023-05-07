@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:pembayaran/pages/Dashboard.dart';
 import 'package:pembayaran/pages/Home.dart';
+import 'package:pembayaran/pages/Saldo.dart';
 
 class MyRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case '/dashboard':
+        return MaterialPageRoute(builder: (_) => Dashboard());
       case '/home':
         return MaterialPageRoute(builder: (_) => MyHomePage());
       case '/feed':
         return MaterialPageRoute(builder: (_) => MyHomePage());
+      case '/saldo':
+        return MaterialPageRoute(builder: (_) => Saldo());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
@@ -31,7 +37,7 @@ class MyRouter {
                           borderRadius: BorderRadius.circular(100),
                         ),
                         onPressed: () {
-                          Navigator.pushNamed(_, "/home");
+                          Navigator.pushNamed(_, "/dashboard");
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
