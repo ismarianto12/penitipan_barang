@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:pembayaran/pages/Cari.dart';
 import 'package:pembayaran/pages/Pinjam.dart';
-
-import '../components/Dashboardcm.dart';
-import '../utils/emoticon_face.dart';
+// import '../components/Dashboardcm.dart';
+// import '../utils/emoticon_face.dart';
 import '../utils/excercise_tile.dart';
 import 'package:pembayaran/pages/Profile.dart';
+// import 'package:pembayaran/models/menugrid.dart';
+import 'package:pembayaran/components/MenuGrid.dart';
+import 'package:pembayaran/components/ListMenu.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key key}) : super(key: key);
@@ -39,7 +40,7 @@ class _DashboardState extends State<Dashboard> {
           ),
           BottomNavigationBarItem(
             icon: InkWell(
-              child: Icon(Icons.home),
+              child: Icon(Icons.document_scanner),
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => Pinjam(),
@@ -60,7 +61,7 @@ class _DashboardState extends State<Dashboard> {
                 children: [
                   Column(
                     children: [
-                      Text("Hay, Joker!",
+                      Text("Hy Rian",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 25,
@@ -120,7 +121,7 @@ class _DashboardState extends State<Dashboard> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("List Detail Menu :",
+                  Text("MENU APLIKASI :",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -133,78 +134,41 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
             SizedBox(
-              height: 25,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  children: [
-                    EmoticonFace(emoticon: '😀'),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Text("Saldo",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold))
-                  ],
-                ),
-                Column(
-                  children: [
-                    EmoticonFace(emoticon: '😀'),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Text("Pengeluaran",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold))
-                  ],
-                ),
-                Column(
-                  children: [
-                    EmoticonFace(emoticon: '😀'),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Text("Bad",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold))
-                  ],
-                ),
-                Column(
-                  children: [
-                    EmoticonFace(emoticon: '😀'),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Text("Bad",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold))
-                  ],
-                ),
-                // EmoticonFace(emoticon: '😀'),
-                // EmoticonFace(emoticon: '😀'),
-              ],
-            ),
-            SizedBox(
-              height: 20,
+              height: 10,
             ),
             Expanded(
+              child: MenuGrid(
+                menuItems: menuItems,
+              ),
+            ),
+            Expanded(
+              flex: 1,
               child: Container(
-                padding: EdgeInsets.all(25),
-                color: Colors.grey[100],
+                height: 500,
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadiusDirectional.horizontal(
+                      start: Radius.circular(10), end: Radius.circular(10)),
+                ),
+                padding: EdgeInsets.all(10),
+                // color: Colors.grey[100],
                 child: Center(
                   child: Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "List Mutasi",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Center(
+                            child: Text(
+                              "List Mutasi",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            ),
                           ),
                           Icon(Icons.more_horiz),
                         ],
@@ -243,9 +207,6 @@ class _DashboardState extends State<Dashboard> {
                               title: 'Riwawat Penitipan',
                               subtitle: 'Riwawat Penitipan',
                               color: Colors.green[100],
-                            ),
-                            SizedBox(
-                              height: 10,
                             ),
                           ],
                         ),
@@ -293,19 +254,34 @@ class MySearchDelegate extends SearchDelegate {
           },
         ),
       ];
-
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<String> suggestions = ['Mangga', 'Mangga', 'Mangga'];
+    List<String> suggestions = [
+      'History Penitipan',
+      'List Data Peniitpan',
+      'Data Penitipan',
+      'Tracking Data Penitipan',
+    ];
     return ListView.builder(
       itemCount: suggestions.length,
       itemBuilder: (context, index) {
         final suggestion = suggestions[index];
-        return ListTile(
-          title: Text(suggestion),
-          onTap: () {
-            query = suggestion;
-          },
+        return Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Icon(Icons.api_outlined, size: 34.0),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                suggestion,
+                style: TextStyle(fontSize: 17.0),
+              ),
+            ],
+          ),
         );
       },
     );

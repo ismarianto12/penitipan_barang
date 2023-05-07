@@ -92,6 +92,7 @@ class MySearchDelegate extends SearchDelegate {
         final suggestion = suggestions[index];
         return ListTile(
           title: Text(suggestion),
+          subtitle: Text(suggestion),
           onTap: () {
             query = suggestion;
           },

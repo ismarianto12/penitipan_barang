@@ -25,34 +25,37 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 73, 141, 197),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               Center(
-                child: Image.network(
-                  'https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg',
-                  height: 250.0,
+                child: Image.asset(
+                  'assets/images/logo/logo.png',
+                  height: 150.0,
                   width: 200.0,
                 ),
               ),
+
               Center(
                 child: Text(
-                  'Bayar Sana Sini Setoran gak ada',
+                  'APLIKASI PENITIPAN BARANG',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     // fontStyle: FontStyle.italic,
                     fontFamily: 'algerian',
-                    color: Colors.black,
+                    color: Colors.white,
                     // backgroundColor: Colors.white,
                   ),
                 ),
               ),
               // SizedBox(height: 36),
-              SizedBox(height: 20),
+              SizedBox(height: 50),
 
               Column(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -68,10 +71,20 @@ class _MyHomePageState extends State<MyHomePage> {
                             controller: _emailController,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.email,
+                                color: Colors.white,
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 255, 255, 255)),
+                              ),
                               filled: true,
-                              fillColor: Colors.white,
-                              border: OutlineInputBorder(),
-                              hintText: 'Email',
+                              hintText: 'Username',
+                              hintStyle: TextStyle(color: Colors.white),
                             ),
                             validator: (value) {
                               if (value.isEmpty) {
@@ -88,9 +101,19 @@ class _MyHomePageState extends State<MyHomePage> {
                             controller: _passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
-                              border: OutlineInputBorder(),
+                              prefixIcon: Icon(
+                                Icons.key,
+                                color: Colors.white,
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
                               fillColor: Colors.brown,
                               hintText: 'Password',
+                              hintStyle: TextStyle(color: Colors.white),
+                              // border: OutlineInputBorder(
+                              //   borderSide: BorderSide(color: Colors.white),
+                              // ),
                             ),
                             validator: (value) {
                               if (value.isEmpty) {
@@ -166,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                           child: Text(
                             'Forget Passowrd ?',
-                            style: TextStyle(fontSize: 14),
+                            style: TextStyle(fontSize: 14, color: Colors.white),
                           ),
                         ),
                         SizedBox(height: 16),

@@ -55,6 +55,7 @@ class _PinjamState extends State<Pinjam> {
             label: "User",
           )
         ],
+        currentIndex: 2,
       ),
       body: SafeArea(
         child: Column(

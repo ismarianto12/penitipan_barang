@@ -4,21 +4,35 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
 class EmoticonFace extends StatelessWidget {
-  final String emoticon;
+  final Icon icon;
+  final Color color;
+  //  components;
+
   const EmoticonFace({
     Key key,
-    this.emoticon,
+    this.icon,
+    this.color,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.blue[600],
-        borderRadius: BorderRadius.circular(12),
+    return GestureDetector(
+      onTap: () {
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => NULL),
+        // );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        padding: EdgeInsets.all(15),
+        child: Center(
+          child: icon,
+        ),
       ),
-      padding: EdgeInsets.all(15),
-      child: Center(child: Text(emoticon, style: TextStyle(fontSize: 28))),
     );
   }
 }

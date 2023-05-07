@@ -25,7 +25,7 @@ class _ForgotState extends State<Forgot> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.brown,
+        backgroundColor: Color.fromARGB(255, 53, 128, 190),
         title: Text("Forget Password"),
       ),
       body: SafeArea(
@@ -58,7 +58,7 @@ class _ForgotState extends State<Forgot> {
                     Text(
                       'Setoran Gak ada',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                         // fontStyle: FontStyle.italic,
                         fontFamily: 'algerian',
@@ -107,6 +107,7 @@ class _ForgotState extends State<Forgot> {
                                     child: Container(
                                       margin: EdgeInsets.all(30),
                                       child: MaterialButton(
+                                        onPressed: () => {null},
                                         // minWidth: 100,
                                         color: Color.fromARGB(255, 44, 44,
                                             44), // Background color

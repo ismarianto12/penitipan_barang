@@ -47,7 +47,7 @@ class ExerciseTile extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                width: 120,
+                width: 50,
               ),
               Icon(
                 Icons.more_horiz,
