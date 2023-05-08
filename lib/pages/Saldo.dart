@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
+
 // import 'package:hive/hive.dart';
 // import 'package:hive_flutter/adapters.dart';
 // import 'package:managment/data/listdata.dart';
 // import 'package:managment/data/model/add_date.dart';
 // import 'package:managment/data/utlity.dart';
-
-class Home extends StatefulWidget {
-  const Home({Key key}) : super(key: key);
+class Saldo extends StatefulWidget {
+  const Saldo({Key key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Saldo> createState() => _SaldoState();
 }
 
-class _HomeState extends State<Home> {
+class _SaldoState extends State<Saldo> {
   var history;
   // final box = Hive.box<Add_data>('data');
+  ValueNotifier<int> count = ValueNotifier<int>(0);
+
   final List<String> day = [
     'Monday',
     "Tuesday",
@@ -28,43 +30,53 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: ValueListenableBuilder(
-              valueListenable: null,
-              builder: (context, value, child) {
-                return CustomScrollView(
-                  slivers: [
-                    SliverToBoxAdapter(
-                      child: SizedBox(height: 340, child: _head()),
-                    ),
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Transactions History',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 19,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Text(
-                              'See all',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
+        child: ValueListenableBuilder(
+          valueListenable: count,
+          builder: (context, value, child) {
+            return CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: SizedBox(height: 340, child: _head()),
+                ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Transactions History',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 19,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
+                        Text(
+                          'See all',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                );
-              })),
+                  ),
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      return get(index);
+                    },
+                    childCount: 4,
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ),
     );
   }
 
@@ -76,36 +88,35 @@ class _HomeState extends State<Home> {
   //       },
   //       child: get(index, history));
   // }
-
-  // ListTile get(int index, Add_data history) {
-  //   return ListTile(
-  //     leading: ClipRRect(
-  //       borderRadius: BorderRadius.circular(5),
-  //       child: Image.asset('images/${history.name}.png', height: 40),
-  //     ),
-  //     title: Text(
-  //       history.name,
-  //       style: TextStyle(
-  //         fontSize: 17,
-  //         fontWeight: FontWeight.w600,
-  //       ),
-  //     ),
-  //     subtitle: Text(
-  //       '${day[history.datetime.weekday - 1]}  ${history.datetime.year}-${history.datetime.day}-${history.datetime.month}',
-  //       style: TextStyle(
-  //         fontWeight: FontWeight.w600,
-  //       ),
-  //     ),
-  //     trailing: Text(
-  //       history.amount,
-  //       style: TextStyle(
-  //         fontWeight: FontWeight.w600,
-  //         fontSize: 19,
-  //         color: history.IN == 'Income' ? Colors.green : Colors.red,
-  //       ),
-  //     ),
-  //   );
-  // }
+  ListTile get(int index) {
+    return ListTile(
+      leading: ClipRRect(
+        borderRadius: BorderRadius.circular(5),
+        child: Image.asset('assets/images/logo/notfound.png', height: 40),
+      ),
+      title: Text(
+        'Pengeluaran',
+        style: TextStyle(
+          fontSize: 17,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      subtitle: Text(
+        'Beli nilai  ${index + 1}',
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      trailing: Text(
+        '100.000',
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 19,
+          color: Colors.green,
+        ),
+      ),
+    );
+  }
 
   Widget _head() {
     return Stack(
@@ -155,7 +166,7 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         Text(
-                          'Enjelin Morgeana',
+                          'Ismarianto',
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 20,
@@ -197,7 +208,7 @@ class _HomeState extends State<Home> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Total Balance',
+                        'Total Balance IDR. 100.0000',
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
@@ -217,7 +228,7 @@ class _HomeState extends State<Home> {
                   child: Row(
                     children: [
                       Text(
-                        '\$ ',
+                        'IDR. 100.0000',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 25,
