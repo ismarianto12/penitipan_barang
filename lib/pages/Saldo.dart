@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 
-// import 'package:hive/hive.dart';
-// import 'package:hive_flutter/adapters.dart';
-// import 'package:managment/data/listdata.dart';
-// import 'package:managment/data/model/add_date.dart';
-// import 'package:managment/data/utlity.dart';
 class Saldo extends StatefulWidget {
   const Saldo({Key key}) : super(key: key);
 
@@ -14,9 +9,7 @@ class Saldo extends StatefulWidget {
 
 class _SaldoState extends State<Saldo> {
   var history;
-  // final box = Hive.box<Add_data>('data');
   ValueNotifier<int> count = ValueNotifier<int>(0);
-
   final List<String> day = [
     'Monday',
     "Tuesday",
@@ -157,21 +150,40 @@ class _SaldoState extends State<Saldo> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Good afternoon',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Color.fromARGB(255, 224, 223, 223),
-                          ),
-                        ),
-                        Text(
-                          'Ismarianto',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 20,
-                            color: Colors.white,
-                          ),
+                        Row(
+                          children: [
+                            IconButton(
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.red)),
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/dashboard');
+                              },
+                              icon: Icon(Icons.arrow_back),
+                              color: Colors.white,
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  'Good afternoon',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    color: Color.fromARGB(255, 224, 223, 223),
+                                  ),
+                                ),
+                                Text(
+                                  'Ismarianto',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ],
                     ),

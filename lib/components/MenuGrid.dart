@@ -9,7 +9,7 @@ class MenuGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.count(
       crossAxisCount: 4,
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.all(30),
       mainAxisSpacing: 15,
       crossAxisSpacing: 20,
       children: menuItems.map((item) {

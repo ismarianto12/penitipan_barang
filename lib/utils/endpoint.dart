@@ -1,2 +1,2 @@
-var DEV_API = "";
-var PROD_API = "";
+const DEV_API = "";
+const PROD_API = "";

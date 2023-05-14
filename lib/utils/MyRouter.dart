@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pembayaran/pages/Dashboard.dart';
+import 'package:pembayaran/components/ButtonNav.dart';
 import 'package:pembayaran/pages/Home.dart';
 import 'package:pembayaran/pages/Saldo.dart';
 
@@ -7,7 +7,7 @@ class MyRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/dashboard':
-        return MaterialPageRoute(builder: (_) => Dashboard());
+        return MaterialPageRoute(builder: (_) => ButtonNav());
       case '/home':
         return MaterialPageRoute(builder: (_) => MyHomePage());
       case '/feed':

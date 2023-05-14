@@ -24,33 +24,6 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[700],
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: InkWell(
-              child: Icon(Icons.home),
-              onTap: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => Profile())),
-            ),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_alarm_sharp),
-            label: "Utils",
-          ),
-          BottomNavigationBarItem(
-            icon: InkWell(
-              child: Icon(Icons.document_scanner),
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => Pinjam(),
-                ),
-              ),
-            ),
-            label: "User",
-          )
-        ],
-      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -124,7 +97,7 @@ class _DashboardState extends State<Dashboard> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("MENU APLIKASI :",
+                  Text("MENU APLIKASI",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -150,8 +123,6 @@ class _DashboardState extends State<Dashboard> {
                 height: 500,
                 decoration: BoxDecoration(
                   color: Colors.grey[100],
-                  borderRadius: BorderRadiusDirectional.horizontal(
-                      start: Radius.circular(10), end: Radius.circular(10)),
                 ),
                 padding: EdgeInsets.all(10),
                 // color: Colors.grey[100],

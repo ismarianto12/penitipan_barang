@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:pembayaran/components/ButtonNav.dart';
 import 'package:pembayaran/pages/Register.dart';
 import 'package:pembayaran/pages/Forgot.dart';
 import 'package:pembayaran/pages/Dashboard.dart';
@@ -47,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    // fontStyle: FontStyle.italic,
+                    fontStyle: FontStyle.italic,
                     fontFamily: 'algerian',
                     color: Colors.white,
                     // backgroundColor: Colors.white,
@@ -211,6 +212,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _isLoading = true;
     });
 
+    _isLoading ? showAlertDialog(context) : '';
     final response = await http.post(
       Uri.parse("https://api.instagram.com/oauth/access_token"),
       headers: {
@@ -233,8 +235,14 @@ class _MyHomePageState extends State<MyHomePage> {
         gravity: ToastGravity.BOTTOM,
       );
     } else {
+      setState(() {
+        _isLoading = false;
+      });
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => Dashboard()));
+        MaterialPageRoute(
+          builder: (context) => ButtonNav(),
+        ),
+      );
 
       Fluttertoast.showToast(
         msg: 'Login gagal server',
@@ -243,6 +251,24 @@ class _MyHomePageState extends State<MyHomePage> {
       );
     }
   }
+}
+
+showAlertDialog(BuildContext context) {
+  AlertDialog alert = AlertDialog(
+    content: new Row(
+      children: [
+        CircularProgressIndicator(),
+        Container(margin: EdgeInsets.only(left: 5), child: Text("Loading")),
+      ],
+    ),
+  );
+  showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }
 
 TextStyle myTextStyle = TextStyle(

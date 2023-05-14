@@ -5,5 +5,6 @@ class MenuItem {
   final IconData icon;
   final String route;
   final Color colors;
+
   MenuItem({this.title, this.icon, this.route, this.colors});
 }
