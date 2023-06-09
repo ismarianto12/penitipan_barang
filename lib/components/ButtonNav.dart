@@ -21,7 +21,9 @@ class _ButtonNavState extends State<ButtonNav> {
       body: Screen[index_color],
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: null,
+        onPressed: () {
+          Navigator.pushNamed(context, "/tambahpenitipan");
+        },
         backgroundColor: Colors.green,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -57,7 +59,7 @@ class _ButtonNavState extends State<ButtonNav> {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 30,
               ),
               GestureDetector(
                 onTap: () {

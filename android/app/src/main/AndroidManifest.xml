@@ -2,10 +2,10 @@
   package="com.example.pembayaran">
 
   <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.CAMERA" />
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
   <application
-    android:label="Pembayaran"
+    android:label="Penitipan Barang"
     android:icon="@mipmap/ic_launcher">
     <activity
       android:name=".MainActivity"

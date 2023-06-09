@@ -6,6 +6,7 @@ import 'package:pembayaran/components/ButtonNav.dart';
 import 'package:pembayaran/pages/Register.dart';
 import 'package:pembayaran/pages/Forgot.dart';
 import 'package:pembayaran/pages/Dashboard.dart';
+import 'package:pembayaran/utils/app.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -41,7 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: 200.0,
                 ),
               ),
-
               Center(
                 child: Text(
                   'APLIKASI PENITIPAN BARANG',
@@ -72,6 +72,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             controller: _emailController,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      width: 3,
+                                      color: Colors.white) //<-- SEE HERE
+                                  ),
                               prefixIcon: Icon(
                                 Icons.email,
                                 color: Colors.white,
@@ -102,6 +107,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             controller: _passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      width: 3,
+                                      color: Colors.white) //<-- SEE HERE
+                                  ),
                               prefixIcon: Icon(
                                 Icons.key,
                                 color: Colors.white,
@@ -109,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               border: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white),
                               ),
-                              fillColor: Colors.brown,
+                              fillColor: Colors.white,
                               hintText: 'Password',
                               hintStyle: TextStyle(color: Colors.white),
                               // border: OutlineInputBorder(
@@ -168,7 +178,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           }
                                         },
                                         child: Padding(
-                                          padding: const EdgeInsets.all(12.0),
+                                          padding: EdgeInsets.all(12.0),
                                           child: Text(
                                             'Login',
                                             style: TextStyle(
@@ -203,7 +213,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 
@@ -251,24 +261,6 @@ class _MyHomePageState extends State<MyHomePage> {
       );
     }
   }
-}
-
-showAlertDialog(BuildContext context) {
-  AlertDialog alert = AlertDialog(
-    content: new Row(
-      children: [
-        CircularProgressIndicator(),
-        Container(margin: EdgeInsets.only(left: 5), child: Text("Loading")),
-      ],
-    ),
-  );
-  showDialog(
-    barrierDismissible: false,
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
 }
 
 TextStyle myTextStyle = TextStyle(

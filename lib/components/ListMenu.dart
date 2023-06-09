@@ -24,13 +24,13 @@ List<MenuItem> menuItems = [
     title: 'Penitipan',
     icon: Icons.settings,
     colors: Colors.orange[200],
-    route: '/saldo',
+    route: '/penitipan',
   ),
   MenuItem(
     title: 'Tracking',
     icon: Icons.settings,
     colors: Colors.orange[400],
-    route: '/saldo',
+    route: '/tracking',
   ),
   MenuItem(
     title: 'Item 6',

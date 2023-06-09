@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pembayaran/components/ButtonNav.dart';
 import 'package:pembayaran/pages/Home.dart';
+import 'package:pembayaran/pages/PinjamAdd.dart';
 import 'package:pembayaran/pages/Saldo.dart';
 
 class MyRouter {
@@ -12,6 +13,9 @@ class MyRouter {
         return MaterialPageRoute(builder: (_) => MyHomePage());
       case '/feed':
         return MaterialPageRoute(builder: (_) => MyHomePage());
+      case '/tambahpenitipan':
+        return MaterialPageRoute(builder: (_) => PinjamAdd());
+
       case '/saldo':
         return MaterialPageRoute(builder: (_) => Saldo());
       default:

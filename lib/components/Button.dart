@@ -3,7 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-import '../components/Dashboardcm.dart';
+import 'Dashboardcm.dart';
 
 // import '../constants.dart';
 // import '../size_config.dart';

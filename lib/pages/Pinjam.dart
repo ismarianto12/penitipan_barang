@@ -10,6 +10,7 @@ import '../utils/emoticon_face.dart';
 import '../utils/excercise_tile.dart';
 import 'package:pembayaran/pages/Profile.dart';
 import 'package:pembayaran/pages/PinjamAdd.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class Pinjam extends StatefulWidget {
   const Pinjam({Key key}) : super(key: key);
@@ -21,6 +22,11 @@ class Pinjam extends StatefulWidget {
 class _PinjamState extends State<Pinjam> {
   @override
   Widget build(BuildContext context) {
+    BorderRadiusGeometry radius = BorderRadius.only(
+      topLeft: Radius.circular(24.0),
+      topRight: Radius.circular(24.0),
+    );
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.blue,
@@ -36,39 +42,34 @@ class _PinjamState extends State<Pinjam> {
                 )
               }),
       backgroundColor: Colors.blue[700],
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: InkWell(
-              child: Icon(Icons.home),
-              onTap: () => Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => Dashboard())),
-            ),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_alarm_sharp),
-            label: "Utils",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.mark_unread_chat_alt),
-            label: "User",
-          )
-        ],
-        currentIndex: 2,
-      ),
       body: SafeArea(
         child: Column(
           children: [
+            SizedBox(
+              height: 20,
+            ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
+                  Row(
                     children: [
-                      Text("12 Jan, 2021",
-                          style: TextStyle(color: Colors.white, fontSize: 12)),
+                      IconButton(
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(Colors.red)),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/dashboard');
+                        },
+                        icon: Icon(Icons.arrow_back),
+                        color: Colors.white,
+                      ),
+                      Text("BACK",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold)),
                     ],
                   ),
                   Container(
@@ -127,57 +128,72 @@ class _PinjamState extends State<Pinjam> {
                           Icon(Icons.more_horiz),
                         ],
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Expanded(
-                        child: ListView(
-                          children: [
-                            ExerciseTile(
-                              title: 'Penitipan Barang',
-                              subtitle: 'Riwawat Penitipan',
-                              color: Colors.red,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            ExerciseTile(
-                              title: 'Riwawat Penitipan',
-                              subtitle: 'Riwawat Penitipan',
-                              color: Colors.orange,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            ExerciseTile(
-                              title: 'Riwawat Penitipan',
-                              subtitle: 'Riwawat Penitipan',
-                              color: Colors.green[100],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            ExerciseTile(
-                              title: 'Riwawat Penitipan',
-                              subtitle: 'Riwawat Penitipan',
-                              color: Colors.green[100],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            ExerciseTile(
-                              title: 'Riwawat Penitipan',
-                              subtitle: 'Riwawat Penitipan',
-                              color: Colors.green[100],
-                            ),
-                          ],
-                        ),
-                      ),
                     ],
                   ),
                 ),
               ),
-            )
+            ),
+            SlidingUpPanel(
+                minHeight: 100,
+                panel: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    margin: EdgeInsets.all(10.0),
+                    child: ListView(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        ExerciseTile(
+                          title: 'Penitipan Barang',
+                          subtitle: 'Riwawat Penitipan',
+                          color: Colors.red,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        ExerciseTile(
+                          title: 'Riwawat Penitipan',
+                          subtitle: 'Riwawat Penitipan',
+                          color: Colors.orange,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        ExerciseTile(
+                          title: 'Riwawat Penitipan',
+                          subtitle: 'Riwawat Penitipan',
+                          color: Colors.green[100],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        ExerciseTile(
+                          title: 'Riwawat Penitipan',
+                          subtitle: 'Riwawat Penitipan',
+                          color: Colors.green[100],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        ExerciseTile(
+                          title: 'Riwawat Penitipan',
+                          subtitle: 'Riwawat Penitipan',
+                          color: Colors.green[100],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                collapsed: Container(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  child: ExerciseTile(
+                    title: 'Penitipan Barang',
+                    subtitle: 'Riwawat Penitipan',
+                    color: Colors.red,
+                  ),
+                ),
+                body: null),
           ],
         ),
       ),

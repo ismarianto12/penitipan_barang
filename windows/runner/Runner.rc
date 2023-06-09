@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "pembayaran" "\0"
+            VALUE "FileDescription", "penitipan" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "pembayaran" "\0"
+            VALUE "InternalName", "penitipan" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
             VALUE "OriginalFilename", "pembayaran.exe" "\0"
-            VALUE "ProductName", "pembayaran" "\0"
+            VALUE "ProductName", "penitipan" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

@@ -10,7 +10,7 @@ class MenuGrid extends StatelessWidget {
     return GridView.count(
       crossAxisCount: 4,
       padding: EdgeInsets.all(30),
-      mainAxisSpacing: 15,
+      mainAxisSpacing: 10,
       crossAxisSpacing: 20,
       children: menuItems.map((item) {
         return InkWell(

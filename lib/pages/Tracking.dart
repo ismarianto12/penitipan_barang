@@ -12,11 +12,10 @@ class Tracking extends StatefulWidget {
 }
 
 class _TrackingState extends State<Tracking> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tracking Peminjaman'),
+        title: const Text('Tracking Peminjaman'),
       ),
       body: FlutterOpenStreetMap(
           center: LatLong(5, 10),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:pembayaran/components/MainSlide.dart';
 import 'package:pembayaran/pages/Cari.dart';
 import 'package:pembayaran/pages/Pinjam.dart';
 // import '../components/Dashboardcm.dart';
@@ -11,6 +12,7 @@ import 'package:pembayaran/pages/Profile.dart';
 // import 'package:pembayaran/models/menugrid.dart';
 import 'package:pembayaran/components/MenuGrid.dart';
 import 'package:pembayaran/components/ListMenu.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key key}) : super(key: key);
@@ -97,11 +99,13 @@ class _DashboardState extends State<Dashboard> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("MENU APLIKASI",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold)),
+                  const Text(
+                    "MENU APLIKASI",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                  ),
                   Icon(
                     Icons.more_horiz,
                     color: Colors.white,
@@ -109,87 +113,89 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Container(height: 200, child: const MainSlide()),
+            )),
             Expanded(
               child: MenuGrid(
                 menuItems: menuItems,
               ),
             ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                height: 500,
-                decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                ),
-                padding: EdgeInsets.all(10),
-                // color: Colors.grey[100],
-                child: Center(
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Center(
-                            child: Text(
-                              "List Mutasi",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            ),
-                          ),
-                          Icon(Icons.more_horiz),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Expanded(
-                        child: ListView(
-                          children: [
-                            ExerciseTile(
-                              title: 'Penitipan Barang',
-                              subtitle: 'Riwawat Penitipan',
-                              color: Colors.red,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            ExerciseTile(
-                              title: 'Riwawat Penitipan',
-                              subtitle: 'Riwawat Penitipan',
-                              color: Colors.orange,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            ExerciseTile(
-                              title: 'Riwawat Penitipan',
-                              subtitle: 'Riwawat Penitipan',
-                              color: Colors.green[100],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            ExerciseTile(
-                              title: 'Riwawat Penitipan',
-                              subtitle: 'Riwawat Penitipan',
-                              color: Colors.green[100],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+            SlidingUpPanel(
+              maxHeight: 210,
+              panel: Center(
+                child: ListView(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ExerciseTile(
+                      title: 'Penitipan Barang',
+                      subtitle: 'Riwawat Penitipan',
+                      color: Colors.red,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ExerciseTile(
+                      title: 'Riwawat Penitipan',
+                      subtitle: 'Riwawat Penitipan',
+                      color: Colors.orange,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ExerciseTile(
+                      title: 'Riwawat Penitipan',
+                      subtitle: 'Riwawat Penitipan',
+                      color: Colors.green[100],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ExerciseTile(
+                      title: 'Riwawat Penitipan',
+                      subtitle: 'Riwawat Penitipan',
+                      color: Colors.green[100],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ExerciseTile(
+                      title: 'Riwawat Penitipan',
+                      subtitle: 'Riwawat Penitipan',
+                      color: Colors.green[100],
+                    ),
+                  ],
                 ),
               ),
-            )
+              collapsed: Container(
+                decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(24.0),
+                      topRight: Radius.circular(24.0),
+                    )),
+                child: Center(
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ExerciseTile(
+                          title: 'Penitipan Barang',
+                          subtitle: 'Riwawat Penitipan',
+                          color: Colors.red,
+                        ),
+                      ]),
+                ),
+              ),
+              body: null,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(24.0),
+                topRight: Radius.circular(24.0),
+              ),
+            ),
           ],
         ),
       ),

@@ -3,8 +3,17 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:pembayaran/components/ComboBox.dart';
+import 'package:pembayaran/pages/Camera.dart';
 import 'package:pembayaran/pages/Dashboard.dart';
 import 'package:pembayaran/pages/Pinjam.dart';
+import 'package:pembayaran/utils/data_penitipan.dart';
+import 'package:pembayaran/utils/app.dart';
+
+class MyController {
+  final TextEditingController textEditingController;
+
+  MyController(this.textEditingController);
+}
 
 class PinjamAdd extends StatefulWidget {
   const PinjamAdd({Key key}) : super(key: key);
@@ -15,8 +24,10 @@ class PinjamAdd extends StatefulWidget {
 
 class _PinjamAddState extends State<PinjamAdd> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _namabarangcontroller = TextEditingController();
+  final _satuanbarangcontroller = TextEditingController();
+  final _statuspenitipancontroller = TextEditingController();
+  final _jumlahControllercontroller = TextEditingController();
 
   bool _isLoading = false;
 
@@ -54,7 +65,6 @@ class _PinjamAddState extends State<PinjamAdd> {
                   //   padding: EdgeInsets.all(12),
                   //   child: Icon(Icons.arrow_back, color: Colors.white),
                   // ),
-
                   // Container(
                   //   decoration: BoxDecoration(
                   //       color: Colors.blue[500],
@@ -138,7 +148,7 @@ class _PinjamAddState extends State<PinjamAdd> {
             Expanded(
               child: Container(
                 // padding: EdgeInsets.all(25),
-                color: Colors.grey[100],
+                color: Colors.white,
                 child: Center(
                   child: Column(
                     children: [
@@ -156,7 +166,7 @@ class _PinjamAddState extends State<PinjamAdd> {
                                   Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: TextFormField(
-                                      controller: _emailController,
+                                      controller: _namabarangcontroller,
                                       keyboardType: TextInputType.emailAddress,
                                       decoration: InputDecoration(
                                         filled: true,
@@ -175,18 +185,43 @@ class _PinjamAddState extends State<PinjamAdd> {
                                   SizedBox(height: 5),
                                   Padding(
                                     padding: const EdgeInsets.all(16.0),
-                                    child: ComboBox(),
+                                    child: ComboBox(
+                                      items: satuan,
+                                      placeholder: 'Satuan',
+                                    ),
                                   ),
                                   SizedBox(height: 5),
-                                  Text(
-                                    'Status Penitipan',
-                                    style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: Color.fromARGB(255, 0, 0, 0)),
+                                  Container(
+                                    width: 1000,
+                                    alignment: Alignment.center,
+                                    color: Color.fromARGB(255, 45, 110, 231),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Icon(
+                                              Icons
+                                                  .account_balance_wallet_sharp,
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255)),
+                                          SizedBox(height: 10),
+                                          Text(
+                                            'STATUS PENITIPAN',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18.0,
+                                                color: Color.fromARGB(
+                                                    255, 255, 255, 255)),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                   SizedBox(height: 5),
                                   CheckboxListTile(
-                                    title: Text('Label Checkbox'),
+                                    title: Text('Bagasi'),
                                     value: _isChecked,
                                     onChanged: (newValue) {
                                       setState(() {
@@ -197,7 +232,7 @@ class _PinjamAddState extends State<PinjamAdd> {
                                         .leading, //posisi label checkbox
                                   ),
                                   CheckboxListTile(
-                                    title: Text('Label'),
+                                    title: Text('Kiloan'),
                                     value: _isChecked,
                                     onChanged: (newValue) {
                                       setState(() {
@@ -211,8 +246,9 @@ class _PinjamAddState extends State<PinjamAdd> {
                                   Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: TextFormField(
-                                      controller: _passwordController,
-                                      obscureText: true,
+                                      keyboardType: TextInputType.number,
+                                      controller: _jumlahControllercontroller,
+                                      // obscureText: true,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(),
                                         fillColor: Colors.brown,
@@ -226,88 +262,94 @@ class _PinjamAddState extends State<PinjamAdd> {
                                       },
                                     ),
                                   ),
-                                  SizedBox(height: 5),
                                   Padding(
                                     padding: const EdgeInsets.all(16.0),
-                                    child: TextFormField(
-                                      controller: _passwordController,
-                                      obscureText: true,
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        fillColor: Colors.brown,
-                                        hintText: 'Password',
-                                      ),
-                                      validator: (value) {
-                                        if (value.isEmpty) {
-                                          return 'Please enter your password';
-                                        }
-                                        return null;
-                                      },
+                                    child: ComboBox(
+                                      items: satuan,
+                                      placeholder: 'Kategori',
                                     ),
                                   ),
-                                  SizedBox(height: 5),
                                   Padding(
                                     padding: const EdgeInsets.all(16.0),
-                                    child: TextFormField(
-                                      controller: _passwordController,
-                                      obscureText: true,
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        fillColor: Colors.brown,
-                                        hintText: 'Password',
-                                      ),
-                                      validator: (value) {
-                                        if (value.isEmpty) {
-                                          return 'Please enter your password';
-                                        }
-                                        return null;
-                                      },
+                                    child: ComboBox(
+                                      items: jenisbarang,
+                                      placeholder: 'Jenis Barang',
                                     ),
                                   ),
-                                  // Row(
-                                  //   mainAxisAlignment: MainAxisAlignment.center,
-                                  //   children: [
-                                  //     _isLoading
-                                  //         ? Expanded(
-                                  //             child: Container(
-                                  //               margin: EdgeInsets.all(30),
-                                  //               child: MaterialButton(
-                                  //                 color: Color.fromARGB(
-                                  //                     255,
-                                  //                     44,
-                                  //                     44,
-                                  //                     44), // Background color
-                                  //                 shape: RoundedRectangleBorder(
-                                  //                   borderRadius:
-                                  //                       BorderRadius.circular(
-                                  //                           100),
-                                  //                 ),
-                                  //                 child: Padding(
-                                  //                   padding:
-                                  //                       const EdgeInsets.all(
-                                  //                           12.0),
-                                  //                   child: Text(
-                                  //                     'Loading ....',
-                                  //                     style: TextStyle(
-                                  //                         fontSize: 18.0,
-                                  //                         color: Colors.white),
-                                  //                   ),
-                                  //                 ),
-                                  //               ),
-                                  //             ),
-                                  //           )
-                                  //         : Positioned(
-                                  //             bottom: 20.0,
-                                  //             right: 20.0,
-                                  //             child: FloatingActionButton(
-                                  //               onPressed: () {
-                                  //                 // Do something when button is pressed
-                                  //               },
-                                  //               child: Icon(Icons.add),
-                                  //             ),
-                                  //           ),
-                                  //   ],
-                                  // ),
+                                  Container(
+                                    width: 1000,
+                                    alignment: Alignment.center,
+                                    color: Color.fromARGB(255, 45, 110, 231),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Icon(
+                                              Icons
+                                                  .account_balance_wallet_sharp,
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255)),
+                                          SizedBox(height: 10),
+                                          Text(
+                                            'Camera',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18.0,
+                                                color: Color.fromARGB(
+                                                    255, 255, 255, 255)),
+                                          ),
+                                          SizedBox(height: 50),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SizedBox(height: 50),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                                builder: (_) => Camera()),
+                                          );
+                                        },
+                                        child: Column(
+                                          children: [
+                                            Image.asset(
+                                              'assets/images/icons/cam.png',
+                                              height: 80.0,
+                                              width: 120.0,
+                                            ),
+                                            Text('Foto'),
+                                            SizedBox(height: 50),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(height: 50),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                                builder: (_) => Camera()),
+                                          );
+                                        },
+                                        child: Column(
+                                          children: [
+                                            Image.asset(
+                                              'assets/images/icons/cam.png',
+                                              height: 80.0,
+                                              width: 120.0,
+                                            ),
+                                            Text('File Foto'),
+                                            SizedBox(height: 50),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  )
                                 ],
                               ),
                             ),
@@ -335,10 +377,16 @@ class _PinjamAddState extends State<PinjamAdd> {
             onPressed: () {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
+                _simpanData(context);
               }
             },
             icon: Icon(Icons.save),
-            label: Text('Save Data'),
+            label: Text(
+              'Save Data',
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
+            ),
           ),
           SizedBox(width: 15),
           FloatingActionButton.extended(
@@ -348,16 +396,25 @@ class _PinjamAddState extends State<PinjamAdd> {
             onPressed: () {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
-                // print(_name);
               }
             },
-            icon: Icon(Icons.share),
-            label: Text('Cancel'),
+            icon: Icon(Icons.cancel),
+            label: Text(
+              'Cancel',
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 
-  void _simpanData() async {}
+  void _simpanData(context) async {
+    setState(() {
+      _isLoading = true;
+    });
+    _isLoading ? showAlertDialog(context) : '';
+  }
 }
